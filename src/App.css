@@ -1,0 +1,36 @@
+.filter {
+  text-align: center;
+  border:2px solid red;
+  max-height:300px;
+  max-width:300px;
+  padding:20px;
+}
+.space-inbtw {
+  margin-top:25px;
+}
+.car-image{
+  vertical-align: middle;
+  border-style: none;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
+.carItem{
+  border:2px solid #EDEDED;
+  margin-top:20px;
+  padding:15px;
+}
+.pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
+.pagination  a{
+   padding:20px;
+}
+.pagination span{
+  padding:20px;
+  display:inline-block;
+}
+
+
