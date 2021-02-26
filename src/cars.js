@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Button ,Container } from 'react-bootstrap';
 
-
 function Mycar({match}) {
     const [car, setCars] = useState({});
     useEffect(() => {
@@ -11,7 +10,20 @@ function Mycar({match}) {
           setCars(data.car);
         });
     }, []);
-       
+
+
+    const saveToFavorite  =(carDetail) =>{
+        const addedCar = JSON.parse(localStorage.getItem('favoriteCar')) || [];
+        console.log("faviuriteCar",addedCar);
+        const index = addedCar.findIndex((e) => e.stockNumber === carDetail.stockNumber);
+        console.log("check",index);
+        if(index ===-1){
+            addedCar.push(carDetail);
+            localStorage.setItem('favoriteCar', JSON.stringify(addedCar));
+        };
+      };
+    
+
 
     return (
          car&&<Container>
@@ -39,7 +51,7 @@ function Mycar({match}) {
                     <p> If you like this car, click the button and
                     save it in your collection of favourite items.
                     </p>
-                    <Button type="submit">Save</Button>
+                    <Button type="submit" onClick ={()=> saveToFavorite(car)}>Save</Button>
                 </Col>
             </Row>
         </Container>

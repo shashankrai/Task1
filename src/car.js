@@ -13,7 +13,7 @@ function Car({ data }) {
                     <Col xs="8">
                         <p>{car.manufacturerName}</p>
                         <p>{`Stock ${car.manufacturerName}-${car.mileage.number} ${car.mileage.unit}  - ${car.manufacturerName} - ${car.color}`}</p>
-                        <Link to={`/car/${car.stockNumber}`}>View details</Link>
+                        <Link to={`/car/${car.stockNumber}`} >View details</Link>
                     </Col>
                 </Row>
 

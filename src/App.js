@@ -19,16 +19,18 @@ function Cars() {
   const [totalCars ,setTotalCars] = useState(0);
 
 
-  const DataFormatting = (data) => {
-    const colors = data.map(item => item.color)
-      .filter((value, index, self) => self.indexOf(value) === index);
+  // const DataFormatting = (data) => {
+  //   const colors = data.map(item => item.color)
+  //     .filter((value, index, self) => self.indexOf(value) === index);
 
-    const manufacturerNames = data.map(item => item.manufacturerName)
-      .filter((value, index, self) => self.indexOf(value) === index);
-    setmanufacturerName(manufacturerNames);
-    setColor(colors);
+  //   const manufacturerNames = data.map(item => item.manufacturerName)
+  //     .filter((value, index, self) => self.indexOf(value) === index);
+  //   setmanufacturerName(manufacturerNames);
+  //   setColor(colors);
 
-  };
+  // };
+ 
+
   const getHeaders = () =>{
       const defaultHeader ={};
       if (selectedColor) {
@@ -50,14 +52,36 @@ function Cars() {
       .then(results => results.json())
       .then(data => {
         setCars(data.cars);
-        DataFormatting(data.cars);
+       // DataFormatting(data.cars);
         setTotalPages(data.totalPageCount);
         setTotalCars(data.totalCarsCount)
 
       });
   }, [currentPage]);
 
+  useEffect(() => {
+    Getcolor();
+    GetManufacturer();
+  },[]);
 
+
+  const Getcolor =() =>{
+    fetch('https://auto1-mock-server.herokuapp.com/api/colors')
+    .then(results => results.json())
+      .then(data => {
+        setColor(data.colors);
+      });
+
+   }
+   const GetManufacturer =() =>{
+    fetch('https://auto1-mock-server.herokuapp.com/api/manufacturers')
+    .then(results => results.json())
+      .then(data => {
+        const manufacturer = data.manufacturers.map(item => item.name);
+        setmanufacturerName(manufacturer);
+      });
+
+   }
   const onChangeColor =(event) =>{
     setSelectedColor(event.target.value);
   }
@@ -66,9 +90,7 @@ function Cars() {
   }
 
   const paginate = pageNumber =>{
-    
     setCurrentPage(pageNumber);
-
   }
    
 const onFormSubmit =(event) => {
@@ -123,6 +145,7 @@ const onFormSubmit =(event) => {
               currentPage ={currentPage}
               totalPages ={totalPages}
               paginate={paginate}
+             
            />
           </Col>
         </Row>

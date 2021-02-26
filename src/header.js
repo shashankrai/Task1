@@ -13,9 +13,10 @@ return (
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-            <Nav.Link href="#deets">Purchase</Nav.Link>
-            <Nav.Link href="#deets">My Orders</Nav.Link>
-            <Nav.Link href="#deets">Sell</Nav.Link>
+            <Nav.Link href="#">Purchase</Nav.Link>
+            <Nav.Link href="#">My Orders</Nav.Link>
+            <Nav.Link href="#">Sell</Nav.Link>
+            <Nav.Link href="/favorite">Favourites</Nav.Link>
         </Nav>
         </Navbar.Collapse>
         </Navbar>
