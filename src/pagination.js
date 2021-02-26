@@ -1,24 +1,45 @@
 
-import { Row, Col } from 'react-bootstrap';
 import React from 'react';
 
+const Pagination = ({ currentPage, totalPages,paginate }) => {
+const current =currentPage;
+const previous =currentPage-1;
+const next = currentPage+1;
+const last = totalPages;
 
-function Pagination({currentPage,totalPages }) {
-    const current =currentPage;
-    const next =current+1;
-    const previous =current-1;
-    return (
-        <div >
-                <Row>
-                        <Col className="pagination">
-                            <a href="#$">First</a>
-                            <a href="#%">Previous</a>
-                            <span>{`page ${currentPage} of ${totalPages}`}</span>
-                            <a href="#%">Next</a>
-                            <a href="#%">Last</a>
-                        </Col>
-                </Row>
-        </div>
-    )
-}
+  return (
+    <nav>
+      <ul className='pagination'>
+        <>
+            <li className='page-item'>
+                <a onClick={() => paginate(1)} href='#' className='page-link'>
+                {'First'}
+                </a>
+            </li>
+            <li  className='page-item'>
+            <a onClick={() => paginate(previous)} href='#' className='page-link'>
+            {'Previous'}
+            </a>
+            </li>
+            <li className='page-item'>
+            <a className='page-link'>
+                    {`page ${current} of ${last}`}
+            </a>
+            </li>
+            <li className='page-item'>
+            <a onClick={() => paginate(next)} href='#' className='page-link'>
+            {'Next'}
+            </a>
+        </li>
+            <li className='page-item'>
+            <a onClick={() => paginate(last)} href='#' className='page-link'>
+            {'Last'}
+            </a>
+        </li>
+        </>
+      </ul>
+    </nav>
+  );
+};
+
 export default Pagination;

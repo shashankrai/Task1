@@ -1,6 +1,7 @@
 
 import { Row, Col } from 'react-bootstrap';
 import React from 'react';
+import { Link } from "react-router-dom";
 
 
 function Car({ data }) {
@@ -12,7 +13,7 @@ function Car({ data }) {
                     <Col xs="8">
                         <p>{car.manufacturerName}</p>
                         <p>{`Stock ${car.manufacturerName}-${car.mileage.number} ${car.mileage.unit}  - ${car.manufacturerName} - ${car.color}`}</p>
-                        <a href="#">View details</a>
+                        <Link to={`/car/${car.stockNumber}`}>View details</Link>
                     </Col>
                 </Row>
 
