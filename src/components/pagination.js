@@ -3,9 +3,8 @@ import React, { useState ,useEffect } from 'react';
 import {Button } from 'react-bootstrap';
 
 
-
 const Pagination = ({ currentPage, totalPages,paginate }) => {
-  const [showNext, setShowNext] = useState(false);
+  const [showNext, setShowNext] = useState(false); //variable rename
   const [showPreviuos, setShowPreviuos] = useState(false);
 
   const current =currentPage; 
@@ -26,36 +25,43 @@ const getNext =(current) =>{
 }
 const showButtons =() =>{
   if(totalPages === 1){
+    console.log("1");
     setShowPreviuos(true);
     setShowNext(true);
-  }
-  else if(currentPage === 1){
-    setShowPreviuos(true);
-  }
-  else if(currentPage ===totalPages){
-    setShowNext(true);
-    setShowPreviuos(false);
   }
   else {
-    setShowNext(false);
-    setShowPreviuos(false);
+    if(currentPage === 1){
+      setShowPreviuos(true);
+      setShowNext(false);
+    }
+    else if(currentPage ===totalPages){
+      setShowNext(true);
+      setShowPreviuos(false);
+    }
+    else {
+      setShowNext(false);
+      setShowPreviuos(false);
+    }
+
   }
+
 }
 
 
 useEffect(() => {
    showButtons();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 },[currentPage,totalPages]);
 
 
   return (
-        <>
+        <div className ="pagination">
          <Button onClick={() => paginate(1)} > First </Button>
          <Button onClick={() => getPrevious(current)} disabled ={showPreviuos}>Previous </Button>
          <span>{`page ${current} of ${totalPages}`}</span>
          <Button onClick={() => getNext(current)} disabled ={showNext}>Next</Button>
          <Button onClick={() => paginate(totalPages)}>Last </Button>
-        </>
+        </div>
   );
 };
 

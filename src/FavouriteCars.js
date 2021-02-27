@@ -1,41 +1,44 @@
 
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col ,Button} from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
-
+import {LOCALE} from './constants'
 
 function Fav() {
     const [cars, setCars] = useState([]);
+    const {localStorageKey ,noSaveFav} =LOCALE;
     
     const getFavCar =() =>{
-        const allFaveCar = JSON.parse(localStorage.getItem('favoriteCar'));
+        const allFaveCar = JSON.parse(localStorage.getItem(localStorageKey));
         setCars(allFaveCar);
     
     };
     const favCarToDelte =(stockNumber) =>{
-        const allFaveCar = JSON.parse(localStorage.getItem('favoriteCar'));
-        console.log("before",allFaveCar);
+        const allFaveCar = JSON.parse(localStorage.getItem(localStorageKey));
         allFaveCar.splice(allFaveCar.findIndex(a => a.stockNumber === stockNumber) , 1);
         setCars(allFaveCar);
-        localStorage.setItem('favoriteCar', JSON.stringify(allFaveCar));
+        localStorage.setItem(localStorageKey, JSON.stringify(allFaveCar));
 
     };
 
     useEffect(() => {
         getFavCar();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
      
     return (
         <div >
-            {cars.map((car,index) => (
+            
+            {cars.length !==0 ?     
+            <>{cars.map((car,index) => (
                 <Row key={index} className="carItem" >
                     <Col>
                         <p>{car.manufacturerName}</p>
                         <p>{`Stock ${car.manufacturerName}-${car.mileage.number} ${car.mileage.unit}  - ${car.manufacturerName} - ${car.color}`}</p>
-                        <a href="#" onClick ={()=>favCarToDelte(car.stockNumber)} >Delete</a>
+                        <Button onClick ={()=>favCarToDelte(car.stockNumber)} >Delete</Button>
                     </Col>
                 </Row>
 
-            ))}
+            ))} </> : <h1>{noSaveFav}</h1>}
         </div>
     )
 }

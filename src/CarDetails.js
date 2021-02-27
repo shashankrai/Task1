@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Button ,Container } from 'react-bootstrap';
+import {GET_CAR_URL} from './config'
+import {LOCALE} from './constants'
 
-function Mycar({match}) {
+function CarDetails({match}) {
     const [car, setCars] = useState({});
+    const {carAvailiable ,saveFav ,saveBtn ,localStorageKey} =LOCALE ;
     useEffect(() => {
-     fetch(`https://auto1-mock-server.herokuapp.com/api/cars/${match.params.id}`)
+     fetch(`${GET_CAR_URL}/${match.params.id}`)
         .then(results => results.json())
         .then(data => {
           setCars(data.car);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
     const saveToFavorite  =(carDetail) =>{
-        const addedCar = JSON.parse(localStorage.getItem('favoriteCar')) || [];
-        console.log("faviuriteCar",addedCar);
+        const addedCar = JSON.parse(localStorage.getItem(localStorageKey)) || [];
         const index = addedCar.findIndex((e) => e.stockNumber === carDetail.stockNumber);
-        console.log("check",index);
         if(index ===-1){
             addedCar.push(carDetail);
-            localStorage.setItem('favoriteCar', JSON.stringify(addedCar));
+            localStorage.setItem(localStorageKey, JSON.stringify(addedCar));
         };
-      };
+    };
     
 
 
@@ -40,21 +42,15 @@ function Mycar({match}) {
                   ${car.mileage.number} ${car.mileage.unit} - ${car.color} `}
                 </p>
                 }
-               
-                            <p> This car is currently available and can be delivered as soon as
-                            tomorrow morning. Please be aware that delivery times shown in
-                            this page are not definitive and may change due to bad weather
-                            conditions.
-                    </p>
+               <p>{carAvailiable}</p>
                 </Col>
                 <Col xs="5">
-                    <p> If you like this car, click the button and
-                    save it in your collection of favourite items.
+                    <p> {saveFav}
                     </p>
-                    <Button type="submit" onClick ={()=> saveToFavorite(car)}>Save</Button>
+                    <Button type="submit" onClick ={()=> saveToFavorite(car)}>{saveBtn}</Button>
                 </Col>
             </Row>
         </Container>
     )
 }
-export default Mycar;
+export default CarDetails;
