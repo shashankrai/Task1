@@ -19,6 +19,7 @@ it('check if the component has rendered filter', () => {
   const renderer = render(<App />) ;
   const filterBtn =renderer.getByText('Filter')
   userEvent.click(filterBtn);
+  expect().to
 });
 // test('should clean up side effect', () => {
 //   let id = 'first'
