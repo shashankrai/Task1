@@ -133,7 +133,7 @@ const App =() => {
                         ))}
                       </Form.Control>
                     </Form.Group>
-                    <Button type="submit" className="custom-filterBtn">{filterBtn}</Button>
+                    <Button type="submit" className="custom-filterBtn" data-testid="filterBtn">{filterBtn}</Button>
                   </fieldset>
                 </Form>
             </div>

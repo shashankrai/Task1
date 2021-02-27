@@ -16,7 +16,7 @@ const LOCALE = {
     favourites:"Favourites",
     first:'First',
     previous:'Previous',
-    page:'page',
+    page:'Page',
     of:'of',
     next:'Next',
     last:'Last',

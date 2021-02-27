@@ -16,6 +16,7 @@ export default function App() {
         <Header></Header>
         <Switch>
           <Route path="/car/:id" component={CarDetails} exact/>
+          <Route path="/home" component={Cars} exact />
           <Route path="/" component={Cars} exact />
           <Route path="/favorite" component={Fav} exact/>
           <Route component={NotFound} />     

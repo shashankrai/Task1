@@ -25,7 +25,6 @@ const getNext =(current) =>{
 }
 const showButtons =() =>{
   if(totalPages === 1){
-    console.log("1");
     setShowPreviuos(true);
     setShowNext(true);
   }
