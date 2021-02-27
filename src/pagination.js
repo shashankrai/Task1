@@ -25,11 +25,18 @@ const getNext =(current) =>{
   }
 }
 const showButtons =() =>{
-  if(currentPage === 1){
+  if(totalPages === 1){
     setShowPreviuos(true);
-  }else if(currentPage ===totalPages){
     setShowNext(true);
-  }else {
+  }
+  else if(currentPage === 1){
+    setShowPreviuos(true);
+  }
+  else if(currentPage ===totalPages){
+    setShowNext(true);
+    setShowPreviuos(false);
+  }
+  else {
     setShowNext(false);
     setShowPreviuos(false);
   }
@@ -38,7 +45,7 @@ const showButtons =() =>{
 
 useEffect(() => {
    showButtons();
-},[currentPage]);
+},[currentPage,totalPages]);
 
 
   return (
