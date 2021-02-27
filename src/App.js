@@ -3,7 +3,7 @@ import { Container, Row, Col,Form ,Button } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import Car from './GetCar';
 import Pagination from './components/pagination';
-import {GET_CAR_URL,GET_MANUFACTURERES_URL, GET_COLOR_URL} from './config'
+import {GET_CARS_URL,GET_MANUFACTURERES_URL, GET_COLOR_URL} from './config'
 import { LOCALE} from './constants'
  
 const App =() => {
@@ -36,7 +36,7 @@ const App =() => {
 
   useEffect(() => {
       const headers = getHeaders();
-      fetch(GET_CAR_URL + new URLSearchParams(headers))
+      fetch(GET_CARS_URL + new URLSearchParams(headers))
       .then(results => results.json())
       .then(data => {
         setCars(data.cars);
@@ -95,7 +95,7 @@ const App =() => {
       alert(filterSelectMessage);
     } else{
       const headers = getHeaders();
-      fetch(GET_CAR_URL + new URLSearchParams(headers))
+      fetch(GET_CARS_URL + new URLSearchParams(headers))
         .then(results => results.json())
         .then(data => {
           setCars(data.cars);

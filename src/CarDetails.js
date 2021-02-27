@@ -7,11 +7,11 @@ function CarDetails({match}) {
     const [car, setCars] = useState({});
     const {carAvailiable ,saveFav ,saveBtn ,localStorageKey} =LOCALE ;
     useEffect(() => {
-     fetch(`${GET_CAR_URL}/${match.params.id}`)
+     fetch(`${GET_CAR_URL}${match.params.id}`)
         .then(results => results.json())
         .then(data => {
           setCars(data.car);
-        });
+        })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

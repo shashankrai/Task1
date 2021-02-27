@@ -17,7 +17,7 @@ it('check if the component has rendered filter', () => {
   const mockFn =jest.fn();
   window.alert = mockFn;
   const renderer = render(<App />) ;
-  const filterBtn =renderer.getByText('Filter')
+  const filterSBtn =renderer.getByText('Filter')
   userEvent.click(filterBtn);
   expect().to
 });
