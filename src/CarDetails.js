@@ -2,16 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, Button ,Container } from 'react-bootstrap';
 import {GET_CAR_URL} from './config'
 import {LOCALE} from './constants'
+import { useHistory } from 'react-router-dom';
 
 function CarDetails({match}) {
+    const history = useHistory();
+
     const [car, setCars] = useState({});
-    const {carAvailiable ,saveFav ,saveBtn ,localStorageKey} =LOCALE ;
+    const {carAvailiable ,saveFav ,saveBtn,localStorageKey} =LOCALE ;
     useEffect(() => {
      fetch(`${GET_CAR_URL}${match.params.id}`)
         .then(results => results.json())
         .then(data => {
           setCars(data.car);
-        })
+        }).catch(err =>{
+            history.push("/notFound");
+        });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -6,6 +6,7 @@ import MyLoader from './components/loader'
 import {LOCALE} from './constants'
 
 
+
 const Getcar = ({ data,loading }) => {
     const {viewDetailBtn} =LOCALE;
 

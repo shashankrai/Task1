@@ -19,7 +19,8 @@ export default function App() {
           <Route path="/home" component={Cars} exact />
           <Route path="/" component={Cars} exact />
           <Route path="/favorite" component={Fav} exact/>
-          <Route component={NotFound} />     
+          <Route component={NotFound} />  
+          <Route path ="/notFound" component={NotFound} exact/>     
           </Switch>
           <Footer></Footer>
           </div>
