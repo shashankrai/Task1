@@ -1,44 +1,54 @@
 
-import React from 'react';
+import React, { useState ,useEffect } from 'react';
+import {Button } from 'react-bootstrap';
+
+
 
 const Pagination = ({ currentPage, totalPages,paginate }) => {
-const current =currentPage;
-const previous =currentPage-1;
-const next = currentPage+1;
-const last = totalPages;
+  const [showNext, setShowNext] = useState(false);
+  const [showPreviuos, setShowPreviuos] = useState(false);
+
+  const current =currentPage; 
+
+const getPrevious =(current) =>{
+  if(current>1){
+   const newCurrent = current -1;
+   paginate(newCurrent,totalPages);
+  }
+  
+}
+
+const getNext =(current) =>{
+  if(current < totalPages){
+    current  = current+1 ;
+    paginate(current,totalPages);
+  }
+}
+const showButtons =() =>{
+  if(currentPage === 1){
+    setShowPreviuos(true);
+  }else if(currentPage ===totalPages){
+    setShowNext(true);
+  }else {
+    setShowNext(false);
+    setShowPreviuos(false);
+  }
+}
+
+
+useEffect(() => {
+   showButtons();
+},[currentPage]);
+
 
   return (
-    <nav>
-      <ul className='pagination'>
         <>
-            <li className='page-item'>
-                <a onClick={() => paginate(1)} href='#' className='page-link'>
-                {'First'}
-                </a>
-            </li>
-            <li  className='page-item'>
-            <a onClick={() => paginate(previous)} href='#' className='page-link'>
-            {'Previous'}
-            </a>
-            </li>
-            <li className='page-item'>
-            <a className='page-link'>
-                    {`page ${current} of ${last}`}
-            </a>
-            </li>
-            <li className='page-item'>
-            <a onClick={() => paginate(next)} href='#' className='page-link'>
-            {'Next'}
-            </a>
-        </li>
-            <li className='page-item'>
-            <a onClick={() => paginate(last)} href='#' className='page-link'>
-            {'Last'}
-            </a>
-        </li>
+         <Button onClick={() => paginate(1)} > First </Button>
+         <Button onClick={() => getPrevious(current)} disabled ={showPreviuos}>Previous </Button>
+         <span>{`page ${current} of ${totalPages}`}</span>
+         <Button onClick={() => getNext(current)} disabled ={showNext}>Next</Button>
+         <Button onClick={() => paginate(totalPages)}>Last </Button>
         </>
-      </ul>
-    </nav>
   );
 };
 

@@ -1,5 +1,5 @@
 import './App.css';
-import { Container, Row, Col, Dropdown ,Form ,Button } from 'react-bootstrap';
+import { Container, Row, Col,Form ,Button } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import Car from './car';
 import Pagination from './pagination';
@@ -15,21 +15,10 @@ function Cars() {
   const [selectedType, setSelectedType] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [carsPerPage] = useState(10);
+  const [showNext, setShowNext] = useState(false);
+  const [showPreviuos, setShowPreviuos] = useState(false);
   const [totalCars ,setTotalCars] = useState(0);
 
-
-  // const DataFormatting = (data) => {
-  //   const colors = data.map(item => item.color)
-  //     .filter((value, index, self) => self.indexOf(value) === index);
-
-  //   const manufacturerNames = data.map(item => item.manufacturerName)
-  //     .filter((value, index, self) => self.indexOf(value) === index);
-  //   setmanufacturerName(manufacturerNames);
-  //   setColor(colors);
-
-  // };
- 
 
   const getHeaders = () =>{
       const defaultHeader ={};
@@ -46,18 +35,16 @@ function Cars() {
   }
 
   useEffect(() => {
-      console.log("came back");
       const headers = getHeaders();
       fetch('https://auto1-mock-server.herokuapp.com/api/cars?' + new URLSearchParams(headers))
       .then(results => results.json())
       .then(data => {
         setCars(data.cars);
-       // DataFormatting(data.cars);
+        setPageCount(data.cars.length);
         setTotalPages(data.totalPageCount);
         setTotalCars(data.totalCarsCount)
-
       });
-  }, [currentPage]);
+  }, [currentPage, totalPages]);
 
   useEffect(() => {
     Getcolor();
@@ -69,7 +56,9 @@ function Cars() {
     fetch('https://auto1-mock-server.herokuapp.com/api/colors')
     .then(results => results.json())
       .then(data => {
-        setColor(data.colors);
+        const colorsData = data.colors;
+        colorsData.unshift('All car colors');
+        setColor(colorsData);
       });
 
    }
@@ -78,6 +67,7 @@ function Cars() {
     .then(results => results.json())
       .then(data => {
         const manufacturer = data.manufacturers.map(item => item.name);
+        manufacturer.unshift('All car colors');
         setmanufacturerName(manufacturer);
       });
 
@@ -89,23 +79,27 @@ function Cars() {
     setSelectedType(event.target.value);
   }
 
-  const paginate = pageNumber =>{
+  const paginate = (pageNumber) =>{
     setCurrentPage(pageNumber);
   }
    
 const onFormSubmit =(event) => {
     event.preventDefault();
-    let myheaders = {
-      manufacturer:selectedType,
-      color:selectedColor,
-      sort:'asc',
-      page:currentPage
+    if(selectedType===null && selectedColor===null ){
+      alert("Please select filter Data");
+    } else{
+      const headers = getHeaders();
+      fetch('https://auto1-mock-server.herokuapp.com/api/cars?' + new URLSearchParams(headers))
+        .then(results => results.json())
+        .then(data => {
+          setCars(data.cars);
+          setPageCount(data.cars.length);
+          setTotalPages(data.totalPageCount);
+          setTotalCars(data.totalCarsCount);
+        });
+
     }
-    fetch('https://auto1-mock-server.herokuapp.com/api/cars?' + new URLSearchParams(myheaders))
-      .then(results => results.json())
-      .then(data => {
-        setCars(data.cars);
-      });
+  
 }
 
   return (
@@ -118,7 +112,7 @@ const onFormSubmit =(event) => {
                   <fieldset>
                     <Form.Group>
                       <Form.Label htmlFor="disabledTextInput">Color</Form.Label>
-                      <Form.Control as="select" id="disabledSelect" onChange={(e) => onChangeColor(e)}>
+                      <Form.Control as="select" id="disabledSelect"  onChange={(e) => onChangeColor(e)}>
                         {color.map((item,index) => (
                             <option key={index} value ={item}>{item}</option>
                         ))}
@@ -139,11 +133,13 @@ const onFormSubmit =(event) => {
           </Col>
           <Col xs="8">
             <p>Availiable Cars  </p>
-          <span>Showing {carsPerPage} of {totalCars} results</span>
+          <span>Showing {pageCount} of {totalCars} results</span>
             <Car data={cars}></Car>
             <Pagination
               currentPage ={currentPage}
               totalPages ={totalPages}
+              showNext ={showNext}
+              showPreviuos ={showPreviuos}
               paginate={paginate}
              
            />

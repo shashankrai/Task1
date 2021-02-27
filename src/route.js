@@ -2,9 +2,7 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
-} from "react-router-dom";
+  Route} from "react-router-dom";
 import Cars from './App';
 import Mycar from './cars';
 import Header from './header';
