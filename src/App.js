@@ -1,6 +1,6 @@
 import './App.scss';
 import { Container, Row, Col,Form ,Button } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useCallback } from 'react';
 import Car from './GetCar';
 import Pagination from './components/pagination';
 import {GET_CARS_URL,GET_MANUFACTURERES_URL, GET_COLOR_URL} from './config'
@@ -21,7 +21,8 @@ const App =() => {
     defaultColor,defaultManufactures,result,showing,of,availableCars} =LOCALE;
 
 
-  const getHeaders = () =>{
+  const getHeaders = useCallback(
+    () => {
       const defaultHeader ={};
       if (selectedColor) {
         defaultHeader.color =selectedColor;
@@ -32,7 +33,9 @@ const App =() => {
       defaultHeader.sort =sort;
       defaultHeader.page =currentPage;
       return defaultHeader;
-  }
+    } ,[currentPage,selectedColor,selectedType,sort]
+);
+
 
   useEffect(() => {
       const headers = getHeaders();
@@ -45,8 +48,7 @@ const App =() => {
         setTotalCars(data.totalCarsCount)
         setloading(false);
       });
-       // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, totalPages]);
+  }, [currentPage, totalPages,  getHeaders]);
 
   useEffect(() => {
     Getcolor();
@@ -117,7 +119,7 @@ const App =() => {
                   <fieldset>
                     <Form.Group>
                       <Form.Label htmlFor="customSelectcolor">{colorLabel}</Form.Label>
-                      <Form.Control as="select"  onChange={(e) => onChangeColor(e)} className="customSelect" id ="customSelectcolor">
+                      <Form.Control as="select"  onChange={(e) => onChangeColor(e)} className="customSelect" id ="customSelectcolor" data-testid ="customSelectcolor">
                         <>
                           {color.map((item,index) => (
                               <option key={index} value ={item}>{item}</option>

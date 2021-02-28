@@ -11,9 +11,9 @@ const Getcar = ({ data,loading }) => {
 
     return (
         <Container fluid >
-            {data.map((car,index) => (
+            {loading ===true  ? <MyLoader/> : 
+            data.map((car,index) => (
                 <Row key={index} className="carItem" >
-                    {loading ===true  ? <MyLoader/>  :
                         <>
                             <Col sm="4"><img src={car.pictureUrl} alt={car.manufacturerName} className="car-image"></img></Col>
                             <Col sm="8">
@@ -21,11 +21,10 @@ const Getcar = ({ data,loading }) => {
                                 <p className ="casr">{`Stock # ${car.manufacturerName} - ${car.mileage.number} ${car.mileage.unit} - ${car.manufacturerName} - ${car.color}`}</p>
                                 <Link to={`/car/${car.stockNumber}`} className ="savebtn" >{viewDetailBtn}</Link>
                             </Col>
-                        </>
-                    }
+                        </>    
                 </Row>
-
-            ))}
+            ))
+            }
         </Container>
     )
 }

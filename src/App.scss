@@ -86,9 +86,10 @@ a {
   }
 }
 .header{
-  height: 80px !important;
   background:none !important;
-  border-bottom:2px solid #EDEDED !important;
+  @media (min-width:992px) {
+    height: 80px !important;
+   }
 }
 .App-logo{
   width: 100%;
@@ -194,16 +195,10 @@ a {
 }
 
 #customSelectmanufactured , #customSelectcolor {
-  &:hover, &:focus, &:active{
-    background-color: #EA7F28 !important;
+option:checked {
+  background-color: #EA7F28 !important;
+  color:#FFFFFF;
 }
-   
-    
-    
-
-    
-
-
 }
 
 
