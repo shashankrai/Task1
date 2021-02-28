@@ -31,7 +31,8 @@ function Fav() {
             {cars.length !==0 ?     
             <>{cars.map((car,index) => (
                 <Row key={index} className="carItem" >
-                    <Col>
+                    <Col sm="4"><img src={car.pictureUrl} alt={car.manufacturerName} className="car-image"></img></Col>
+                    <Col sm="8">
                         <p>{car.manufacturerName}</p>
                         <p>{`Stock ${car.manufacturerName}-${car.mileage.number} ${car.mileage.unit}  - ${car.manufacturerName} - ${car.color}`}</p>
                         <Button onClick ={()=>favCarToDelte(car.stockNumber)} >Delete</Button>

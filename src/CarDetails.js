@@ -24,9 +24,11 @@ function CarDetails({match}) {
     const saveToFavorite  =(carDetail) =>{
         const addedCar = JSON.parse(localStorage.getItem(localStorageKey)) || [];
         const index = addedCar.findIndex((e) => e.stockNumber === carDetail.stockNumber);
+        alert("This Car is already added to favourite list");
         if(index ===-1){
             addedCar.push(carDetail);
             localStorage.setItem(localStorageKey, JSON.stringify(addedCar));
+            alert("Added to your favourite list, Please see favourite section");
         };
     };
     

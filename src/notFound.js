@@ -1,13 +1,20 @@
 import React from 'react';
+import { Container} from 'react-bootstrap';
+import {LOCALE} from './constants'
+import logo from './images/logo.png';
 
 
 function NotFound() {
+    const {notFound,notFoundMessage}  = LOCALE;
     return (
-        <div >
-           <hi>404 -Not found</hi>
-           <p>Sorry, the page you are looking for does not exist.
-You can always go back to the <a href ="/">homepage</a></p>
-        </div>
+        <Container fluid style={{'height':'800px','text-align':'center'}}>
+            <div className="notFound">
+                <div><img src={logo} className="App-logo" alt="Auto1" /></div>
+                <h2>{notFound}</h2>
+                <h4>{notFoundMessage} <a href ="/">Homepage.</a></h4>
+            </div>
+        </Container>
+       
     )
 }
 export default NotFound;

@@ -109,7 +109,7 @@ const App =() => {
   }
 
   return (
-      <Container fluid className="space-inbtw">
+      <Container fluid style={{'height':'800px', 'margin-top':'24px'}}>
         <Row>
           <Col sm="4">
             <div className="filter">
@@ -152,5 +152,6 @@ const App =() => {
       </Container>
   );
 }
+
 
 export default App;

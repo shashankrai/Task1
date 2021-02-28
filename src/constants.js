@@ -26,6 +26,8 @@ const LOCALE = {
     noSaveFav:'You dont have any favourite car saved please visit to home page',
     viewDetailBtn:'View details',
     localStorageKey:'favoriteCar',
+    notFound:'404 -Not found',
+    notFoundMessage:"Sorry, the page you are looking for does not exist. You can always go back to the"
 
 }
 module.exports ={
