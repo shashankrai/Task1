@@ -21,21 +21,18 @@ const App =() => {
     defaultColor,defaultManufactures,result,showing,of,availableCars} =LOCALE;
 
 
-  const getHeaders = useCallback(
-    () => {
-      const defaultHeader ={};
-      if (selectedColor) {
-        defaultHeader.color =selectedColor;
-      }
-      if (selectedType) {
-         defaultHeader.manufacturer =selectedType;
-      }
-      defaultHeader.sort =sort;
-      defaultHeader.page =currentPage;
-      return defaultHeader;
-    } ,[currentPage,selectedColor,selectedType,sort]
-);
-
+  const getHeaders = () =>{
+        const defaultHeader = {};
+        if (selectedColor) {
+          defaultHeader.color =selectedColor;
+        }
+        if (selectedType) {
+          defaultHeader.manufacturer =selectedType;
+        }
+        defaultHeader.sort =sort;
+        defaultHeader.page =currentPage;
+        return defaultHeader;   
+  }
 
   useEffect(() => {
       const headers = getHeaders();
@@ -48,7 +45,8 @@ const App =() => {
         setTotalCars(data.totalCarsCount)
         setloading(false);
       });
-  }, [currentPage, totalPages,  getHeaders]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage, totalPages]);
 
   useEffect(() => {
     Getcolor();
@@ -141,8 +139,8 @@ const App =() => {
             </div>
           </Col>
           <Col sm="8">
-            <p className="headingMain">{availableCars}</p>
-            <p className="headingSubmain">{`${showing} ${pageCount} ${of} ${totalCars} ${result}`}</p>
+            <p className="headingMain" >{availableCars}</p>
+            <p className="headingSubmain" data-testid="pageCount">{`${showing} ${pageCount} ${of} ${totalCars} ${result}`}</p>
             <Car data={cars} loading ={loading}></Car>
             <Pagination
               currentPage ={currentPage}

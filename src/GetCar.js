@@ -18,7 +18,7 @@ const Getcar = ({ data,loading }) => {
                             <Col sm="4"><img src={car.pictureUrl} alt={car.manufacturerName} className="car-image"></img></Col>
                             <Col sm="8">
                                 <p className="carName">{car.manufacturerName}</p>
-                                <p className ="casr">{`Stock # ${car.manufacturerName} - ${car.mileage.number} ${car.mileage.unit} - ${car.manufacturerName} - ${car.color}`}</p>
+                                <p className ="carDesc">{`Stock # ${car.manufacturerName} - ${car.mileage.number} ${car.mileage.unit} - ${car.manufacturerName} - ${car.color}`}</p>
                                 <Link to={`/car/${car.stockNumber}`} className ="savebtn" >{viewDetailBtn}</Link>
                             </Col>
                         </>    
