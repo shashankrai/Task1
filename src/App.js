@@ -109,15 +109,15 @@ const App =() => {
   }
 
   return (
-      <Container fluid style={{'height':'800px', 'margin-top':'24px'}}>
+      <Container fluid>
         <Row>
           <Col sm="4">
             <div className="filter">
                 <Form onSubmit={onFormSubmit}>
                   <fieldset>
                     <Form.Group>
-                      <Form.Label htmlFor="disabledTextInput">{colorLabel}</Form.Label>
-                      <Form.Control as="select" id="disabledSelect"  onChange={(e) => onChangeColor(e)}>
+                      <Form.Label htmlFor="customSelectcolor">{colorLabel}</Form.Label>
+                      <Form.Control as="select"  onChange={(e) => onChangeColor(e)} className="customSelect" id ="customSelectcolor">
                         <>
                           {color.map((item,index) => (
                               <option key={index} value ={item}>{item}</option>
@@ -126,21 +126,21 @@ const App =() => {
                       </Form.Control>
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label htmlFor="disabledSelect">{manufacturerLabel}</Form.Label>
-                      <Form.Control as="select" id="disabledSelect" onChange={(e) => onChangeManufacture(e)}>
+                      <Form.Label htmlFor="customSelectmanufactured">{manufacturerLabel}</Form.Label>
+                      <Form.Control as="select" id="customSelectmanufactured" onChange={(e) => onChangeManufacture(e)}>
                       {manufacturerName.map((item,index) => (
                             <option key={index} value ={item}>{item}</option>
                         ))}
                       </Form.Control>
                     </Form.Group>
-                    <Button type="submit" className="custom-filterBtn" data-testid="filterBtn">{filterBtn}</Button>
+                    <Button type="submit" className="custom-filterBtn float-right" data-testid="filterBtn">{filterBtn}</Button>
                   </fieldset>
                 </Form>
             </div>
           </Col>
           <Col sm="8">
-            <p>{availableCars}</p>
-          <span>{`${showing} ${pageCount} ${of} ${totalCars} ${result}`}</span>
+            <p className="headingMain">{availableCars}</p>
+            <p className="headingSubmain">{`${showing} ${pageCount} ${of} ${totalCars} ${result}`}</p>
             <Car data={cars} loading ={loading}></Car>
             <Pagination
               currentPage ={currentPage}

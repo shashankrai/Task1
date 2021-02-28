@@ -35,26 +35,30 @@ function CarDetails({match}) {
 
 
     return (
-         car&&<Container>
+         car&&<Container fluid style ={{"height":"800px"}} className="carDetails">
             <Row>
-                <Col xs="12"> 
-                    <img src={car.pictureUrl} className="carshow" alt="Auto1" />
+                <Col sm="12"> 
+                    <div className="carDetailsPicture">
+                        <img src={car.pictureUrl} alt="Auto1" />
+                    </div>
                 </Col>
             </Row>
-            <Row>
-                <Col xs="5">
-                <p>{car.manufacturerName}</p>
-                {car.stockNumber && <p>
+            <Row className="justify-content-md-center" style ={{"marginTop":"24px"}}>
+                <Col sm="6" >
+                <p className="carName">{car.manufacturerName}</p>
+                {car.stockNumber && <p className ="carDesc">
                     {`Stock # ${car.stockNumber}- ${car.fuelType}
                   ${car.mileage.number} ${car.mileage.unit} - ${car.color} `}
                 </p>
                 }
                <p>{carAvailiable}</p>
                 </Col>
-                <Col xs="5">
-                    <p> {saveFav}
-                    </p>
-                    <Button type="submit" onClick ={()=> saveToFavorite(car)}>{saveBtn}</Button>
+                <Col sm="4">
+                    <div className ="carSave">
+                        <p className ="car-specification">{saveFav}</p>
+                        <Button type="submit" onClick ={()=> saveToFavorite(car)} className="custom-filterBtn float-right">{saveBtn}</Button>
+                    </div>
+                  
                 </Col>
             </Row>
         </Container>

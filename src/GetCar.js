@@ -6,7 +6,6 @@ import MyLoader from './components/loader'
 import {LOCALE} from './constants'
 
 
-
 const Getcar = ({ data,loading }) => {
     const {viewDetailBtn} =LOCALE;
 
@@ -16,10 +15,10 @@ const Getcar = ({ data,loading }) => {
                 <Row key={index} className="carItem" >
                     {loading ===true  ? <MyLoader/>  :
                         <>
-                            <Col sm="4"><img src={car.pictureUrl} alt="car" className="car-image"></img></Col>
+                            <Col sm="4"><img src={car.pictureUrl} alt={car.manufacturerName} className="car-image"></img></Col>
                             <Col sm="8">
-                                <p>{car.manufacturerName}</p>
-                                <p>{`Stock ${car.manufacturerName}-${car.mileage.number} ${car.mileage.unit}  - ${car.manufacturerName} - ${car.color}`}</p>
+                                <p className="carName">{car.manufacturerName}</p>
+                                <p className ="casr">{`Stock # ${car.manufacturerName} - ${car.mileage.number} ${car.mileage.unit} - ${car.manufacturerName} - ${car.color}`}</p>
                                 <Link to={`/car/${car.stockNumber}`} className ="savebtn" >{viewDetailBtn}</Link>
                             </Col>
                         </>

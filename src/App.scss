@@ -1,7 +1,35 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 80px!important;
+}
+a {
+  color:#EA7F28!important
+}
 .filter {
-  text-align: center;
+  text-align:left;
   border:2px solid #EDEDED;
-  padding:20px;
+  padding:24px;
+}
+.headingMain {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4A4A4A;
+}
+.headingSubmain {
+  font-size: 18px;
+  font-weight: 500;
+  color: #4A4A4A;
+}
+.carName {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4A4A4A;
+}
+.carDesc{
+  text-transform:capitalize;
 }
 .space-inbtw {
   margin-top:25px;
@@ -16,61 +44,50 @@
 }
 .carItem{
   border:2px solid #EDEDED;
-  margin-top:20px;
+  margin-top:24px;
   padding:15px;
 }
 .pagination{
   display: flex;
   align-items: center;
   justify-content: center;
-} 
-.pagination button {
-   padding:20px;
-   background: none;
-   border: none;
-   color: #EA7F28;
-   font-weight: bold;
-   font-family: SANS-SERIF;
-   font-size: 14px;
-   cursor: pointer;
-}
-.pagination button:disabled {
-  padding:20px;
-  background: none;
-  border: none;
-  color: #EA7F28;
-  font-weight: bold;
-  font-family: SANS-SERIF;
-  font-size: 14px;
-  cursor:none;
-}
-.pagination button:hover {
-  padding:20px;
-  background: none;
-  border: none;
-  color: #EA7F28;
-  font-weight: bold;
-  font-family: SANS-SERIF;
-  font-size: 14px;
-  cursor:pointer;
-}
-.pagination span{
-  padding:20px;
-  display:inline-block;
-}
-.footer {
-  text-align:center;
-  color: #4A4A4A;
-  font-size: 18px;
-}
-.carshow {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  padding:12px;
+  button {
+    padding:18px;
+    background: none;
+    border: none;
+    color: #EA7F28;
+    font-family: SANS-SERIF;
+    font-size: 14px;
+    cursor: pointer;
+    &:disabled {
+      padding:18px;
+      background: none;
+      border: none;
+      color: #EA7F28;
+      font-family: SANS-SERIF;
+      font-size: 14px;
+      cursor:none;
+    }
+    &:hover, &:focus, &:active {
+      padding:18px;
+      background: none!important;
+      border: none;
+      color: #EA7F28;
+      font-family: SANS-SERIF;
+      font-size: 14px;
+      cursor:pointer;
+      box-shadow: none!important;
+    }
+  }
+  span{
+    padding:12px;
+    display:inline-block;
+  }
 }
 .header{
-  height: 80px  !important;
+  height: 80px !important;
+  background:none !important;
   border-bottom:2px solid #EDEDED !important;
 }
 .App-logo{
@@ -79,39 +96,20 @@
   max-width: 190px;
 }
 .link-header{
-  color:#4A4A4A;
-  font-weight: bold;
+  color:#4A4A4A !important;
+  font-weight: 500;
 }
 .custom-filterBtn{
   width: 128px  !important;
   background: #EA7F28  !important;
   border: none  !important;
-}
-.filterBtn:active  {
-  width: 128px;
-  background: #EA7F28;
-  border: none;
-}
-.savebtn{
-  background: none  !important;
-  border: none  !important;
-  color: #EA7F28   !important;
-  font-weight: bold  !important;
-  font-family: SANS-SERIF  !important;
-  font-size: 14px  !important;
-  cursor:pointer  !important;
-  text-decoration:none  !important;
+  padding:4px;
 
-}
-.savebtn:hover{
-  background: none;
-  border: none;
-  color: #EA7F28;
-  font-weight: bold;
-  font-family: SANS-SERIF;
-  font-size: 14px;
-  cursor:pointer;
-  text-decoration:none;
+  &:active  {
+    width: 128px;
+    background: #EA7F28;
+    border: none;
+  }
 }
 .footer {
   height: 80px  !important;
@@ -119,39 +117,94 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #4A4A4A;
+  font-size: 18px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #FFFFFF;
 }
 .footerText {
-   height:20px
+  margin:0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4A4A4A;
 }
-
 .carDisplay{
   display: flex;
   align-items: center;
   justify-content: center;
   background: #EDEDED;
-}
-
-.carDisplay img {
-  width: 100%;
-  height: auto;
-  max-width: 300px;
-  margin-top:24px;
-  margin-bottom:24px;
+  
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin-top:24px;
+    margin-bottom:24px;
+  }
 }
 .mx-auto {
-  padding:20px !important;
+  padding:24px !important;
 }
 .notFound {
   text-align: center;
-  top: 60%;
+  top:30%;
   height:100px;
   position: absolute;
   margin: auto;
   width: 98%;
   left:0;
   right:0;
+  h2, h4 {
+    margin-top: 24px;
+  }
+  h4 {
+    font-weight: normal;
+    font-size: 1.2rem;
+  }
+}
+.carDetails {
+  .carSave{
+    border: 2px solid #EDEDED;
+    padding: 24px;
+    width: 321px;
+    height: 176px;
+  }
+  .carDesc{
+    font-size: 18px;
+    font-weight: 300;
+  }
+  .car-specification{
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+.carDetailsPicture{
+  height: 400px;
+  align-items: center;
+  margin-top: -24px;
+  display: flex;
+  justify-content: center;
+  background-color:#EDEDED;
+  img {
+    max-height:100%;
+  }
+ 
 }
 
+#customSelectmanufactured , #customSelectcolor {
+  &:hover, &:focus, &:active{
+    background-color: #EA7F28 !important;
+}
+   
+    
+    
+
+    
+
+
+}
 
 
 

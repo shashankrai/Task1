@@ -1,5 +1,5 @@
 
-import { Row, Col ,Button} from 'react-bootstrap';
+import { Row, Col ,Button, Container} from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import {LOCALE} from './constants'
 
@@ -8,7 +8,7 @@ function Fav() {
     const {localStorageKey ,noSaveFav} =LOCALE;
     
     const getFavCar =() =>{
-        const allFaveCar = JSON.parse(localStorage.getItem(localStorageKey));
+        const allFaveCar = JSON.parse(localStorage.getItem(localStorageKey)) || [];
         setCars(allFaveCar);
     
     };
@@ -26,21 +26,20 @@ function Fav() {
     },[]);
      
     return (
-        <div >
-            
+        <Container>
             {cars.length !==0 ?     
             <>{cars.map((car,index) => (
                 <Row key={index} className="carItem" >
                     <Col sm="4"><img src={car.pictureUrl} alt={car.manufacturerName} className="car-image"></img></Col>
                     <Col sm="8">
-                        <p>{car.manufacturerName}</p>
-                        <p>{`Stock ${car.manufacturerName}-${car.mileage.number} ${car.mileage.unit}  - ${car.manufacturerName} - ${car.color}`}</p>
-                        <Button onClick ={()=>favCarToDelte(car.stockNumber)} >Delete</Button>
+                        <p className="carName">{car.manufacturerName}</p>
+                        <p className="carDesc">{`Stock ${car.manufacturerName}-${car.mileage.number} ${car.mileage.unit}  - ${car.manufacturerName} - ${car.color}`}</p>
+                        <Button onClick ={()=>favCarToDelte(car.stockNumber)} className="custom-filterBtn">Delete</Button>
                     </Col>
                 </Row>
 
-            ))} </> : <h1>{noSaveFav}</h1>}
-        </div>
+            ))} </> : <h4 className="text-center mt-4">{noSaveFav} <a href="/">HomePage</a></h4>}
+        </Container>
     )
 }
 export default Fav;
