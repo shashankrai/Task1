@@ -17,6 +17,10 @@ a {
   font-size: 18px;
   font-weight: bold;
   color: #4A4A4A;
+  @media (max-width: 750px){
+     margin-top:24px;
+  }
+ 
 }
 .headingSubmain {
   font-size: 18px;
@@ -24,7 +28,7 @@ a {
   color: #4A4A4A;
 }
 .carName {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: #4A4A4A;
 }
@@ -32,7 +36,7 @@ a {
   text-transform:capitalize;
 }
 .space-inbtw {
-  margin-top:25px;
+  margin-top:24px;
 }
 .car-image{
   vertical-align: middle;
@@ -105,11 +109,8 @@ a {
   background: #EA7F28  !important;
   border: none  !important;
   padding:4px;
-
-  &:active  {
-    width: 128px;
-    background: #EA7F28;
-    border: none;
+  &:active,&:hover{
+    background: #D37324 !important ;
   }
 }
 .footer {
@@ -127,7 +128,7 @@ a {
 }
 .footerText {
   margin:0;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #4A4A4A;
 }
@@ -169,7 +170,7 @@ a {
   .carSave{
     border: 2px solid #EDEDED;
     padding: 24px;
-    width: 321px;
+    width: 291px;
     height: 176px;
   }
   .carDesc{
@@ -190,10 +191,8 @@ a {
   background-color:#EDEDED;
   img {
     max-height:100%;
-  }
- 
+  } 
 }
-
 #customSelectmanufactured , #customSelectcolor {
 option:checked {
   background-color: #EA7F28 !important;

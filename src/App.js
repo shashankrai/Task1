@@ -32,7 +32,7 @@ const App =(): Node=> {
           defaultHeader.manufacturer =selectedType;
         }
         defaultHeader.sort =sort;
-        defaultHeader.page =currentPage;
+        defaultHeader.page =currentPage.toString();
         return defaultHeader;   
   }
 
