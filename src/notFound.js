@@ -1,10 +1,11 @@
+// @flow
 import React from 'react';
 import { Container} from 'react-bootstrap';
 import {LOCALE} from './constants'
 import logo from './images/logo.png';
+import type { Node } from 'react';
 
-
-function NotFound() {
+const  NotFound =():Node =>{
     const {notFound,notFoundMessage,notFoundMessage1}  = LOCALE;
     return (
         <Container fluid style={{'height':'800px','text-align':'center'}}>

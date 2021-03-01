@@ -1,13 +1,14 @@
+// @flow
 import logo from '../images/logo.png';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import React from 'react';
 import '../App.scss';
 import { LOCALE} from '../constants'
+import type { Node } from 'react';
 
 
-
-function Header () {
+const  Header =(): Node => {
     const {linkPurchase,linkOrders,linkSell,favourites} =LOCALE;
 return (
     <header className="mb-4">

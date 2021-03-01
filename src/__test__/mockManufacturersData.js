@@ -292,3 +292,4 @@ const mockManufacturersData = {
     }
   ]
 };
+export default mockManufacturersData;

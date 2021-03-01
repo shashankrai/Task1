@@ -1,5 +1,5 @@
 const LOCALE = {
-    sort: 'sort',
+    sort: 'asc',
     defaultColor :'All car colors',
     defaultManufactures :'All manufacturers',
     filterSelectMessage :'Please select filter Data',

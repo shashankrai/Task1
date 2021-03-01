@@ -1,10 +1,16 @@
+// @flow
+import type { Node } from 'react';
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Button ,Container } from 'react-bootstrap';
 import {GET_CAR_URL} from './config'
 import {LOCALE} from './constants'
 import { useHistory } from 'react-router-dom';
 
-function CarDetails({match}) {
+type Props = {
+  match: Object,
+};
+
+const CarDetails =({match}:Props):Node => {
     const history = useHistory();
 
     const [car, setCars] = useState({});
@@ -22,14 +28,15 @@ function CarDetails({match}) {
 
 
     const saveToFavorite  =(carDetail) =>{
-        const addedCar = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+        const addedCar = JSON.parse(localStorage.getItem(localStorageKey)  || '[]');
         const index = addedCar.findIndex((e) => e.stockNumber === carDetail.stockNumber);
-        alert("This Car is already added to favourite list");
         if(index ===-1){
             addedCar.push(carDetail);
             localStorage.setItem(localStorageKey, JSON.stringify(addedCar));
             alert("Added to your favourite list, Please see favourite section");
-        };
+        } else {
+        alert("This Car is already added to favourite list");
+        }
     };
     
 
@@ -56,7 +63,7 @@ function CarDetails({match}) {
                 <Col sm="4">
                     <div className ="carSave">
                         <p className ="car-specification">{saveFav}</p>
-                        <Button type="submit" onClick ={()=> saveToFavorite(car)} className="custom-filterBtn float-right">{saveBtn}</Button>
+                        <Button type="submit" onClick ={()=> saveToFavorite(car)} className="custom-filterBtn float-right" data-testid="saveBtn">{saveBtn}</Button>
                     </div>
                   
                 </Col>

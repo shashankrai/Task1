@@ -1,19 +1,20 @@
-
+// @flow
+import type { Node } from 'react';
 import { Row, Col ,Button, Container} from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import {LOCALE} from './constants'
 
-function Fav() {
+const Fav = ():Node => {
     const [cars, setCars] = useState([]);
     const {localStorageKey ,noSaveFav} =LOCALE;
     
     const getFavCar =() =>{
-        const allFaveCar = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+        const allFaveCar = JSON.parse(localStorage.getItem(localStorageKey) || '[]');
         setCars(allFaveCar);
     
     };
     const favCarToDelte =(stockNumber) =>{
-        const allFaveCar = JSON.parse(localStorage.getItem(localStorageKey));
+        const allFaveCar = JSON.parse(localStorage.getItem(localStorageKey) || '[]');
         allFaveCar.splice(allFaveCar.findIndex(a => a.stockNumber === stockNumber) , 1);
         setCars(allFaveCar);
         localStorage.setItem(localStorageKey, JSON.stringify(allFaveCar));
@@ -34,7 +35,7 @@ function Fav() {
                     <Col sm="8">
                         <p className="carName">{car.manufacturerName}</p>
                         <p className="carDesc">{`Stock ${car.manufacturerName}-${car.mileage.number} ${car.mileage.unit}  - ${car.manufacturerName} - ${car.color}`}</p>
-                        <Button onClick ={()=>favCarToDelte(car.stockNumber)} className="custom-filterBtn">Delete</Button>
+                        <Button onClick ={()=>favCarToDelte(car.stockNumber)} className="custom-filterBtn" data-testid="delete">Delete</Button>
                     </Col>
                 </Row>
 

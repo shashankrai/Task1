@@ -1,12 +1,14 @@
+// @flow
+import type { Node } from 'react';
 import './App.scss';
 import { Container, Row, Col,Form ,Button } from 'react-bootstrap';
-import React, { useState, useEffect ,useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Car from './GetCar';
 import Pagination from './components/pagination';
 import {GET_CARS_URL,GET_MANUFACTURERES_URL, GET_COLOR_URL} from './config'
 import { LOCALE} from './constants'
- 
-const App =() => {
+
+const App =(): Node=> {
   const [cars, setCars] = useState([]);
   const [loading, setloading] = useState(true);
   const [pageCount, setPageCount] = useState(0);
@@ -14,7 +16,7 @@ const App =() => {
   const [manufacturerName, setmanufacturerName] = useState([]);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalCars ,setTotalCars] = useState(0);
   const {colorLabel,manufacturerLabel,filterBtn,sort,
@@ -120,16 +122,16 @@ const App =() => {
                       <Form.Control as="select"  onChange={(e) => onChangeColor(e)} className="customSelect" id ="customSelectcolor" data-testid ="customSelectcolor">
                         <>
                           {color.map((item,index) => (
-                              <option key={index} value ={item}>{item}</option>
+                              <option  key={`${index}:${item}`} value ={item}>{item}</option>
                           ))}
                         </>
                       </Form.Control>
                     </Form.Group>
                     <Form.Group>
                       <Form.Label htmlFor="customSelectmanufactured">{manufacturerLabel}</Form.Label>
-                      <Form.Control as="select" id="customSelectmanufactured" onChange={(e) => onChangeManufacture(e)}>
+                      <Form.Control as="select" id="customSelectmanufactured" onChange={(e) => onChangeManufacture(e)} data-testid="manuFacturing">
                       {manufacturerName.map((item,index) => (
-                            <option key={index} value ={item}>{item}</option>
+                            <option key={`${index}:${item}`} value ={item}>{item}</option>
                         ))}
                       </Form.Control>
                     </Form.Group>

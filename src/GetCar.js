@@ -1,14 +1,16 @@
-
+// @flow
+import type { Node } from 'react';
 import { Row, Col ,Container } from 'react-bootstrap';
 import React from 'react';
-import { Link } from "react-router-dom";
 import MyLoader from './components/loader'
-import {LOCALE} from './constants'
+import {LOCALE} from './constants';
+type Props = {
+  data: Object,
+  loading: boolean,
+};
 
-
-const Getcar = ({ data,loading }) => {
+const Getcar = ({ data,loading }:Props): Node=> {
     const {viewDetailBtn} =LOCALE;
-
     return (
         <Container fluid >
             {loading ===true  ? <MyLoader/> : 
@@ -19,7 +21,7 @@ const Getcar = ({ data,loading }) => {
                             <Col sm="8">
                                 <p className="carName">{car.manufacturerName}</p>
                                 <p className ="carDesc">{`Stock # ${car.manufacturerName} - ${car.mileage.number} ${car.mileage.unit} - ${car.manufacturerName} - ${car.color}`}</p>
-                                <Link to={`/car/${car.stockNumber}`} className ="savebtn" >{viewDetailBtn}</Link>
+                                <a href ={`car/${car.stockNumber}`} className ="savebtn" data-testid="viewBtn" >{viewDetailBtn}</a>
                             </Col>
                         </>    
                 </Row>
